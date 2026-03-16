@@ -5,6 +5,7 @@ The Autonomous Engineering Copilot is a cross-platform Python desktop applicatio
 
 
 
+
 ## Key Features & Use Cases
 - **Local Document Q&A:** Users can seamlessly query proprietary technical specifications, datasheets, and compliance documents directly on their machine, receiving accurate insights with specific page references.
 - **Configurable Inference:** The application provides a GUI settings panel for dynamically adjusting LLM generation parameters (e.g., Temperature, Top-P, Model Selection).

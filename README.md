@@ -4,7 +4,7 @@
 The Autonomous Engineering Copilot is a cross-platform Python desktop application designed to act as an offline AI assistant. By utilizing local Large Language Models (LLMs) and embedded vector databases, it provides powerful RAG (Retrieval-Augmented Generation) capabilities entirely on the user's hardware.
 
 ![s1](https://github.com/AlexG-4W/autonomous-engineering-copilot/blob/main/s1.jpg)
-
+![s1](https://github.com/AlexG-4W/autonomous-engineering-copilot/blob/main/s2.jpg)
 
 
 ## Key Features & Use Cases

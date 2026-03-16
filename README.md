@@ -60,6 +60,22 @@ You can run the application by double-clicking the `run_gui.bat` script (on Wind
 python -m src.gui.main_window
 ```
 
+## Troubleshooting
+
+### Failed building wheel for llama-cpp-python (Windows)
+This error occurs during dependency installation if your system lacks the necessary C++ compiler to build the `llama-cpp-python` package from source.
+
+**Solution:**
+1. Download [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) from Microsoft.
+2. Run the installer and select the **"Desktop development with C++"** workload.
+3. Finish the installation and **restart your terminal or IDE** (e.g., VS Code) to update the system paths.
+4. Re-activate your virtual environment and run `pip install -r requirements.txt` again.
+
+### ModuleNotFoundError: No module named 'PySide6'
+This usually happens if the `pip install -r requirements.txt` command failed or was interrupted (often by the C++ compiler issue mentioned above). Because the process stopped early, subsequent packages like `PySide6` were not installed.
+
+**Solution:** Resolve any build errors first, then re-run `pip install -r requirements.txt` to ensure all required packages are successfully installed into your `.venv`.
+
 ## Running Tests
 To run the automated test suite, ensure your virtual environment is active and execute:
 ```bash

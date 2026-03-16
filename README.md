@@ -75,4 +75,4 @@ pytest tests/
 - `tests/`: Comprehensive test suite using pytest and MagicMock for GUI testing.
 
 - ## License
-This project is licensed under the GNU General Public License v3.0
+This project is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE

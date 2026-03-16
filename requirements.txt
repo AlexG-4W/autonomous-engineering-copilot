@@ -1,0 +1,13 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+black
+flake8
+mypy
+pytest
+pytest-cov
+PyMuPDF
+sentence-transformers
+lance
+lancedb
+llama-cpp-python
+PyInstaller
+PySide6

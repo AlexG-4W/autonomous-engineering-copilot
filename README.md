@@ -6,6 +6,8 @@ The Autonomous Engineering Copilot is a cross-platform Python desktop applicatio
 
 
 
+
+
 ## Key Features & Use Cases
 - **Local Document Q&A:** Users can seamlessly query proprietary technical specifications, datasheets, and compliance documents directly on their machine, receiving accurate insights with specific page references.
 - **Configurable Inference:** The application provides a GUI settings panel for dynamically adjusting LLM generation parameters (e.g., Temperature, Top-P, Model Selection).
@@ -45,6 +47,7 @@ pip install -r requirements.txt
 
 ### 4. Download Model
 Download a GGUF model (e.g., Llama-3-8B-Instruct-GGUF) and place it in the `model/` directory.
+
 ( https://huggingface.co/NoelJacob/Meta-Llama-3-8B-Instruct-Q4_K_M-GGUF )
 
 ```bash

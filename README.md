@@ -45,6 +45,7 @@ pip install -r requirements.txt
 
 ### 4. Download Model
 Download a GGUF model (e.g., Llama-3-8B-Instruct-GGUF) and place it in the `model/` directory.
+( https://huggingface.co/NoelJacob/Meta-Llama-3-8B-Instruct-Q4_K_M-GGUF )
 
 ```bash
 mkdir model
@@ -69,3 +70,6 @@ pytest tests/
 - `src/ingestion/`: Extractors for PDFs, CSVs.
 - `src/rag/`: Logic for vector embedding, database interaction (LanceDB), LLM generation, and text chunking.
 - `tests/`: Comprehensive test suite using pytest and MagicMock for GUI testing.
+
+- ## License
+This project is licensed under the GNU General Public License v3.0

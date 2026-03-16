@@ -45,9 +45,8 @@ pip install -r requirements.txt
 ```
 
 ### 4. Download Model
-Download a GGUF model (e.g., Llama-3-8B-Instruct-GGUF) and place it in the `model/` directory.
+Download a GGUF model (e.g., Llama-3-8B-Instruct-GGUF https://huggingface.co/NoelJacob/Meta-Llama-3-8B-Instruct-Q4_K_M-GGUF) and place it in the `model/` directory.
 
-( https://huggingface.co/NoelJacob/Meta-Llama-3-8B-Instruct-Q4_K_M-GGUF )
 
 ```bash
 mkdir model

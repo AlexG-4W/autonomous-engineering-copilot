@@ -49,19 +49,20 @@ class RAGPipeline:
             embeddings = self.embedder.generate_embeddings(texts)
             self.db.add_chunks(self.table_name, chunks, embeddings)
 
-    def query(self, user_query: str, **kwargs: Any) -> Any:
+    def query(self, user_query: str, top_k: int = 3, **kwargs: Any) -> Any:
         """
         Processes a user query and returns a generated RAG response.
 
         Args:
             user_query (str): The question to ask.
+            top_k (int): Number of context chunks to retrieve. Defaults to 3.
             **kwargs: Extra parameters passed to the generator (e.g. stream, max_tokens)
 
         Returns:
             str | Iterator[Any]: The final generated answer or generator.
         """
         query_embedding = self.embedder.generate_embeddings([user_query])[0]
-        results = self.db.search(self.table_name, query_embedding, limit=3)
+        results = self.db.search(self.table_name, query_embedding, limit=top_k)
 
         contexts = [res.get("text", "") for res in results]
         return self.generator.generate_rag_response(user_query, contexts, **kwargs)

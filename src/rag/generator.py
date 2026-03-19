@@ -17,52 +17,57 @@ class Generator:
         # ДОБАВЛЕНО: n_ctx=4096 расширяет память для длинных документов
         self.llm = Llama(model_path=model_path, verbose=False, n_ctx=4096)
 
-    # ИЗМЕНЕНО: Базовый лимит увеличен с 256 до 1024 токенов
-    def generate(
+    def generate_rag_response(
         self,
-        prompt: str,
+        query: str,
+        contexts: List[str],
         max_tokens: int = 512,
         stream: bool = False,
         temperature: float = 0.7,
         top_p: float = 0.95,
-    ) -> Union[str, Iterator[Any]]:
+        **kwargs: Any,
+    ) -> Union[str, Iterator[str]]:
         """
-        Generates text based on a prompt.
+        Generates a RAG response by combining context and query into a prompt
+        using the Chat Completion API for Llama 3 strict formatting.
         """
-        # ДОБАВЛЕНО: Жесткие стоп-слова. Как только модель генерирует
-        # одно из них - она останавливается.
-        # <|eot_id|> - это встроенный стоп-сигнал Llama 3.
-        response: Union[Dict[str, Any], Iterator[Any]] = self.llm(
-            prompt,
+        context_str = "\n".join(contexts)
+
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are a strict and professional technical assistant. "
+                    "Answer the user's question concisely using ONLY the "
+                    "information in the Context. Do not repeat the raw context. "
+                    "If the answer is not in the context, say so."
+                ),
+            },
+            {
+                "role": "user",
+                "content": f"Context:\n{context_str}\n\nQuestion:\n{query}",
+            },
+        ]
+
+        response = self.llm.create_chat_completion(
+            messages=messages,  # type: ignore
             max_tokens=max_tokens,
             temperature=temperature,
             top_p=top_p,
             stream=stream,
-            stop=["Question:", "Context:", "<|eot_id|>", "\n\n\n"],
-        )  # type: ignore
+            **kwargs,
+        )
 
         if stream:
-            return cast(Iterator[Any], response)
+
+            def stream_generator() -> Iterator[str]:
+                for chunk in cast(Iterator[Any], response):
+                    delta = chunk.get("choices", [{}])[0].get("delta", {})
+                    content = delta.get("content", "")
+                    if content:
+                        yield content
+
+            return stream_generator()
 
         res_dict = cast(Dict[str, Any], response)
-        return str(res_dict["choices"][0]["text"]).strip()
-
-    def generate_rag_response(
-        self, query: str, contexts: List[str], **kwargs: Any
-    ) -> Union[str, Iterator[Any]]:
-        """
-        Generates a RAG response by combining context and query into a prompt.
-        """
-        context_str = "\n".join(contexts)
-        # ИЗМЕНЕНО: Строгий системный промпт, запрещающий
-        # лить воду и повторять текст
-        prompt = (
-            f"You are a strict and professional technical assistant. "
-            f"Answer the user's question concisely using ONLY "
-            f"the information in the Context. "
-            f"Do not repeat the raw context.\n\n"
-            f"Context:\n{context_str}\n\n"
-            f"Question:\n{query}\n\n"
-            f"Answer:"
-        )
-        return self.generate(prompt, **kwargs)
+        return str(res_dict["choices"][0]["message"]["content"]).strip()

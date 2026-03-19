@@ -39,12 +39,14 @@ def test_pipeline_ingest_and_query(
     mock_db_instance.add_chunks.assert_called_once()
 
     # Test Query
-    answer = pipeline.query("What is this?")
+    answer = pipeline.query("What is this?", top_k=5, temperature=0.1)
 
     assert answer == "Mocked answer."
-    mock_db_instance.search.assert_called_once()
+    mock_db_instance.search.assert_called_once_with(
+        "knowledge_base", [0.1, 0.2], limit=5
+    )
     mock_gen_instance.generate_rag_response.assert_called_once_with(
-        "What is this?", ["dummy context"]
+        "What is this?", ["dummy context"], temperature=0.1
     )
 
 

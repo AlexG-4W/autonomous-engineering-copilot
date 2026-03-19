@@ -1,5 +1,12 @@
 import sys
 import os
+import io
+
+if sys.stdout is None:
+    sys.stdout = io.StringIO()
+if sys.stderr is None:
+    sys.stderr = io.StringIO()
+
 from dataclasses import dataclass
 
 # Add project root to sys.path to allow direct execution
@@ -34,9 +41,10 @@ from src.gui.threads import Worker  # noqa: E402
 @dataclass
 class AppSettings:
     model_path: str = "./model/meta-llama-3-8b-instruct.Q4_K_M.gguf"
-    temperature: float = 0.7
-    top_p: float = 0.95
+    temperature: float = 0.1
+    top_p: float = 0.90
     max_tokens: int = 512
+    top_k: int = 3
 
 
 class MainWindow(QMainWindow):
@@ -133,12 +141,17 @@ class MainWindow(QMainWindow):
         self.max_tokens_input.setRange(1, 4096)
         self.max_tokens_input.setValue(self.settings.max_tokens)
 
+        self.top_k_input = QSpinBox()
+        self.top_k_input.setRange(1, 10)
+        self.top_k_input.setValue(self.settings.top_k)
+
         self.apply_settings_btn = QPushButton("Apply Settings")
 
         settings_layout.addRow("Model Path:", model_path_layout)
         settings_layout.addRow("Temperature:", self.temp_input)
         settings_layout.addRow("Top-P:", self.top_p_input)
         settings_layout.addRow("Max Tokens:", self.max_tokens_input)
+        settings_layout.addRow("Retrieved Chunks:", self.top_k_input)
         settings_layout.addWidget(self.apply_settings_btn)
 
         self.status_label = QLabel("Ready")
@@ -192,6 +205,7 @@ class MainWindow(QMainWindow):
             self.settings.temperature = self.temp_input.value()
             self.settings.top_p = self.top_p_input.value()
             self.settings.max_tokens = self.max_tokens_input.value()
+            self.settings.top_k = self.top_k_input.value()
 
             self.status_label.setText("Loading model...")
             self.apply_settings_btn.setEnabled(False)
@@ -213,6 +227,7 @@ class MainWindow(QMainWindow):
             self.settings.temperature = self.temp_input.value()
             self.settings.top_p = self.top_p_input.value()
             self.settings.max_tokens = self.max_tokens_input.value()
+            self.settings.top_k = self.top_k_input.value()
             self.status_label.setText("Settings Applied")
 
     def on_model_load_success(self, pipeline: Any) -> None:
@@ -291,6 +306,7 @@ class MainWindow(QMainWindow):
         self.chat_worker = Worker(
             self.pipeline.query,
             query,
+            top_k=self.settings.top_k,
             stream=True,
             temperature=self.settings.temperature,
             top_p=self.settings.top_p,

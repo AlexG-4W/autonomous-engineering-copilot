@@ -42,9 +42,10 @@ def test_main_window_chat_interaction(
         mock_worker_class.assert_called_once_with(
             mock_pipeline.query,
             "Test query",
+            top_k=3,
             stream=True,
-            temperature=0.7,
-            top_p=0.95,
+            temperature=0.1,
+            top_p=0.90,
             max_tokens=512,
         )
         mock_worker_instance.start.assert_called_once()

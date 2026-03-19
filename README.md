@@ -1,6 +1,6 @@
 # Autonomous Engineering Copilot 🤖
+![scr1 ver1 1](https://github.com/user-attachments/assets/6ebc3f6f-3cc4-46dd-a892-0493207206c6)
 
-![Version|96](https://img.shields.io/badge/version-v1.1.0-blue.svg)
 
 ## Vision
 The Autonomous Engineering Copilot is a cross-platform desktop application designed to act as an offline AI assistant. By utilizing local Large Language Models (LLMs) and embedded vector databases, it provides powerful RAG (Retrieval-Augmented Generation) capabilities entirely on the user's hardware.

@@ -1,5 +1,7 @@
 # Autonomous Engineering Copilot 🤖
-![scr1 ver1 1](https://github.com/user-attachments/assets/6ebc3f6f-3cc4-46dd-a892-0493207206c6)
+
+![scr v2a](https://github.com/user-attachments/assets/fadbd47b-fe95-4659-b6c8-f7da21678126)
+
 
 
 ## Vision
@@ -9,16 +11,18 @@ The Autonomous Engineering Copilot is a cross-platform desktop application desig
 
 ## ✨ Key Features & Use Cases
 - **Local Document Q&A:** Users can seamlessly query proprietary technical specifications, datasheets, and compliance documents directly on their machine, receiving accurate insights with specific page references.
-- **Configurable Inference:** The application provides a GUI settings panel for dynamically adjusting LLM generation parameters (e.g., Temperature, Top-P, Model Selection).
+- **Multiple File Formats:** Support for `.pdf`, `.csv`, `.docx`, `.xlsx`, `.txt`, and `.md` file ingestion.
+- **Multi-Table Vector Search:** Dynamically isolates each uploaded document into its own LanceDB table, allowing users to query "All" documents via Reciprocal Rank Fusion, or filter the search to a specific document collection via the UI sidebar.
+- **Source Citations:** Automatically appends document sources and metadata to the end of the AI's response so users can verify facts.
+- **Modern UI & Configurable Inference:** A sleek dark theme (Fusion) with a GUI settings panel for dynamically adjusting LLM generation parameters (e.g., Temperature, Top-P, Model Selection, Context Chunks).
 - **Real-Time Streaming:** The AI copilot streams generation text incrementally into the chat window for immediate feedback and responsiveness.
-- **Dynamic Context Retrieval:** Users can dynamically adjust the number of context chunks retrieved for RAG generation.
 - **Infrastructure Independence:** The system operates without any requirement for API keys, internet connectivity, or specialized cloud infrastructure, ensuring uninterrupted access and complete data privacy.
 
 ## 🚀 Quick Start (Standalone Executable for Windows)
 
 You don't need to install Python to use the Copilot. You can run the pre-compiled standalone executable.
 
-1. **Download the Release:** Download the `v1.1.0` release of the `AECopilot` distribution from the Releases tab.
+1. **Download the Release:** Download the v2.0-`alpha` release of the `AECopilot` distribution from the Releases tab.
 2. **Add a Model:** Ensure you have a quantized GGUF model (e.g., `meta-llama-3-8b-instruct.Q4_K_M.gguf`). Place it in the `model/` directory next to the `.exe`.
 3. **Run:** Double-click `AECopilot.exe` to launch the application. No background console will appear, and the app will load the AI models entirely offline.
 

@@ -9,6 +9,7 @@ The Autonomous Engineering Copilot is a cross-platform desktop application desig
 
 
 
+
 ## ✨ Key Features & Use Cases
 - **Local Document Q&A:** Users can seamlessly query proprietary technical specifications, datasheets, and compliance documents directly on their machine, receiving accurate insights with specific page references.
 - **Multiple File Formats:** Support for `.pdf`, `.csv`, `.docx`, `.xlsx`, `.txt`, and `.md` file ingestion.
@@ -18,15 +19,19 @@ The Autonomous Engineering Copilot is a cross-platform desktop application desig
 - **Real-Time Streaming:** The AI copilot streams generation text incrementally into the chat window for immediate feedback and responsiveness.
 - **Infrastructure Independence:** The system operates without any requirement for API keys, internet connectivity, or specialized cloud infrastructure, ensuring uninterrupted access and complete data privacy.
 
-## 🚀 Quick Start (Standalone Executable for Windows)
+# 🚀 Release v2.1-alpha: Gemma 4 Support
 
-You don't need to install Python to use the Copilot. You can run the pre-compiled standalone executable.
+## 🔥 Highlight: Full Gemma 4 Compatibility
+The core inference engine has been upgraded to support the newly released **Gemma 4** architecture. The application now seamlessly handles the advanced tokenization and multi-layered embeddings of the latest GGUF models.
+* **Recommended Model:** This release is optimized and tested with the `Gemma-4-E4B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf` model for precise, unfiltered technical generation.
+* **Download the Model:** [Download Gemma-4-E4B here](https://huggingface.co/HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive#aggressive-variant)
 
-1. **Download the Release:** Download the v2.0-`alpha` release of the `AECopilot` distribution from the Releases tab.
-2. **Add a Model:** Ensure you have a quantized GGUF model (e.g., `meta-llama-3-8b-instruct.Q4_K_M.gguf`). Place it in the `model/` directory next to the `.exe`.
-3. **Run:** Double-click `AECopilot.exe` to launch the application. No background console will appear, and the app will load the AI models entirely offline.
 
-*(Note: The embedded `lancedb_data` directory is kept alongside the executable to persist your vectorized document knowledge base between sessions).*
+## 🛠️ Quick Start Instructions
+1. Download the `AECopilot2.1-alpha.zip` archive from the assets below and extract it to a folder on your PC.
+2. Download your preferred `.gguf` model (like the recommended Gemma 4 model above).
+3. Place the downloaded `.gguf` file inside the `AECopilot/model/` directory.
+4. Run `AECopilot.exe` and start querying your local documents entirely offline!
 
 ---
 

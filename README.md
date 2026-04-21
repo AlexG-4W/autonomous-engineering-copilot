@@ -75,6 +75,8 @@ This usually happens if the `pip install -r requirements.txt` command failed or 
 **Solution:** Resolve any build errors first, then re-run `pip install -r requirements.txt` to ensure all required packages are successfully installed into your `.venv`.
 ### 4. Download Model
 Download a GGUF model (e.g., [Llama-3-8B-Instruct-GGUF](https://huggingface.co/NoelJacob/Meta-Llama-3-8B-Instruct-Q4_K_M-GGUF) , [Qwen2.5-7B-Instruct-Q4_K_M.gguf](https://huggingface.co/WSDW/Qwen2.5-7B-Instruct-Uncensored-Q4_K_M-GGUF) , [Mistral-Nemo-Instruct-2407-Q4_K_M.gguf](https://huggingface.co/Nehal07/Mistral-Nemo-Instruct-2407-Q4_K_M-GGUF) ) and place it in the `model/` directory.
+
+* **Note:**  also tested and verified 4-bit support for the advanced reasoning model: [Qwen3.6-35B-A3B-Claude-4.6-Opus-Reasoning-Distilled-GGUF](https://huggingface.co/hesamation/Qwen3.6-35B-A3B-Claude-4.6-Opus-Reasoning-Distilled-GGUF).
 ```bash
 mkdir model
 # Place your .gguf file here
